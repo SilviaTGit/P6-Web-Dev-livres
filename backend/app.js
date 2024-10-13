@@ -3,12 +3,13 @@ const mongoose = require('mongoose');
 const app = express();
 
 const bookRoutes = require('./routes/books');
+const userRoutes = require('./routes/user');
 
 mongoose.connect('mongodb+srv://alice:2ZDbbHzlcBR0yitU@cluster0.ssawd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-//app.use(express.json()); ??
+app.use(express.json()); // It allows to analyze the body of requests in JSON format
 
 /* To avoid CORS errors, we add headers to the response to allow the front-end to access the API. */
 app.use((req, res, next) => {
@@ -19,5 +20,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/books', bookRoutes);
+app.use('/api/auth', userRoutes);
 
 module.exports = app;
