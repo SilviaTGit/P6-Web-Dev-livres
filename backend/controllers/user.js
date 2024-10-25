@@ -33,7 +33,7 @@ exports.login = (req, res, next) => {
                        userId: user._id,
                        token: jwt.sign(
                            { userId: user._id },
-                           'RANDOM_TOKEN_SECRET',
+                           'RANDOM_TOKEN_SECRET', // To be edited in Prod Version
                             { expiresIn: '24h' }
                           )
                    });

@@ -1,12 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const bookRoutes = require('./routes/books');
 const userRoutes = require('./routes/user');
 const path = require('path');
 
-mongoose.connect('mongodb+srv://alice:2ZDbbHzlcBR0yitU@cluster0.ssawd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
